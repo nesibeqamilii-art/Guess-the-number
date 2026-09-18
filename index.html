@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A realtime, two-player Guess the Number game." />
+    <title>Guess the Number — Two Player</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <p class="eyebrow">REALTIME · TWO PLAYERS</p>
+        <h1>Guess the<br /><span>Number.</span></h1>
+        <p class="intro">Pick a room, challenge a friend, and be the first to crack the number from 0–20.</p>
+      </header>
+
+      <section id="connection-error" class="notice error hidden" role="alert"></section>
+
+      <section id="lobby" class="panel lobby-panel" aria-labelledby="join-title">
+        <div class="panel-heading">
+          <p class="step">01 / JOIN</p>
+          <h2 id="join-title">Start or enter a room</h2>
+        </div>
+        <form id="join-form">
+          <label>Your name
+            <input id="name" name="name" maxlength="24" autocomplete="name" placeholder="e.g. Riley" required />
+          </label>
+          <label>Room code
+            <div class="room-row">
+              <input id="room-code" name="roomCode" maxlength="8" autocomplete="off" placeholder="e.g. LUCKY7" required />
+              <button id="random-room" class="button secondary" type="button">New code</button>
+            </div>
+          </label>
+          <button class="button primary" type="submit">Enter room <span>→</span></button>
+        </form>
+        <p class="hint">Share the same room code with one friend. The first person creates the room.</p>
+      </section>
+
+      <section id="game" class="hidden" aria-live="polite">
+        <div class="room-bar">
+          <div><p class="eyebrow">ROOM</p><strong id="active-room-code">—</strong></div>
+          <button id="leave-room" class="text-button" type="button">Leave room</button>
+        </div>
+
+        <section class="panel score-panel" aria-label="Scoreboard">
+          <div class="round-label">ROUND <span id="round-number">1</span></div>
+          <div class="scores">
+            <div class="player-card" id="player1-card"><span id="player1-name">Waiting…</span><strong id="player1-score">0</strong></div>
+            <div class="versus">VS</div>
+            <div class="player-card" id="player2-card"><span id="player2-name">Waiting…</span><strong id="player2-score">0</strong></div>
+          </div>
+        </section>
+
+        <section class="panel guess-panel">
+          <p class="step">02 / GUESS</p>
+          <h2>What’s the number?</h2>
+          <p class="range">Choose a whole number from <strong>0</strong> to <strong>20</strong>.</p>
+          <form id="guess-form">
+            <label class="sr-only" for="guess">Your guess</label>
+            <input id="guess" type="number" min="0" max="20" inputmode="numeric" placeholder="?" required />
+            <button id="guess-button" class="button primary" type="submit">Make guess <span>→</span></button>
+          </form>
+          <p id="feedback" class="feedback" role="status">Waiting for a second player to join…</p>
+        </section>
+
+        <section class="activity" aria-label="Game status">
+          <span class="status-dot"></span><p id="status-text">Connecting to the room…</p>
+        </section>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
