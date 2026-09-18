@@ -1,6 +1,6 @@
 /* Replace these two values with your project's values from Supabase > Project Settings > API. */
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+const SUPABASE_URL = 'https://scilokziytpsbbecqofn.supabase.co';
+const SUPABASE_ANON_KEY = sb_publishable_FOGe2EZqOLg9NSgONVJ3gA_d6Gma1CA
 
 const { createClient } = window.supabase;
 const state = { client: null, room: null, playerSlot: null, channel: null };
